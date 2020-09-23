@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3667334799845667780}
   - component: {fileID: 5867566094193291512}
+  - component: {fileID: 82387075937841390}
   m_Layer: 0
   m_Name: Colony
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3983438283810394119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -57.784138, y: -32.044254, z: 9.912549}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3355402634936003190}
@@ -44,9 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867d10c501f48244ba53ce558d08ab3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AntsCount: 10
-  AntPrefab: {fileID: 5455392431113797068, guid: e595b5cb38d32dc458d948b1dd82105b,
-    type: 3}
+--- !u!114 &82387075937841390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983438283810394119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883a0fbf7cdb49d419896d112256c51a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodLeft: 0
+  AntPrefab: {fileID: 0}
 --- !u!1 &6723223020354323290
 GameObject:
   m_ObjectHideFlags: 0
