@@ -153,13 +153,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1addc0bb92bfc3141a71e0441570ef4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VerticesCount: 5
-  PlaneSize: 10
+  VerticesCount: 10
+  PlaneSize: 50
   SafePad: 1
   EdgePrefab: {fileID: 4285096216277719625, guid: f12ba7066d9694e44a5ce61ea61fccee,
     type: 3}
-  alfa: 0.4
-  beta: 0.7
+  alfa: 1
+  beta: 1
+  p: 0.8
 --- !u!4 &430869149
 Transform:
   m_ObjectHideFlags: 0

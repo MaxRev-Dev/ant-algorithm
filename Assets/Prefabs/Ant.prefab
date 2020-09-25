@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624d282963e16f648882febf7136a9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodLocation: {x: 0, y: 0, z: 0}
   State: 0
 --- !u!195 &-6094796236777874147
 NavMeshAgent:
@@ -58,10 +57,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 10
-  m_Acceleration: 1000
+  m_Speed: 100
+  m_Acceleration: 10000
   avoidancePriority: 50
-  m_AngularSpeed: 300
+  m_AngularSpeed: 0
   m_StoppingDistance: 0.05
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -111,7 +110,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 40
+  m_Time: 10
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

@@ -9,14 +9,13 @@ namespace Assets.Scripts
     public class Edge : ICloneable
     {
         public int VertFrom { get; }
-        public int VertTo { get; } 
-        public float Value { get; set; } = 1;
-        public float P { get; set; }
-         
+        public int VertTo { get; }
+        public float Value { get; set; }
+
         public Edge(int vertFrom, int vertTo)
         {
             VertFrom = vertFrom;
-            VertTo = vertTo; 
+            VertTo = vertTo;
         }
 
         public bool Is(int v1, int v2)
@@ -29,6 +28,12 @@ namespace Assets.Scripts
         {
             return MemberwiseClone();
         }
+
+        public bool Not(int last, IList<int> visited)
+        {
+            return VertTo == last && !visited.Contains(VertFrom) ||
+                   VertFrom == last && !visited.Contains(VertTo);
+        }
     }
     public class GraphGenerator : MonoBehaviour
     {
@@ -36,10 +41,19 @@ namespace Assets.Scripts
         public int PlaneSize = 100;
         public int SafePad = 1;
         public EdgeComponent EdgePrefab;
-        public float alfa = .1f;
-        public float beta = .6f;
+        public float alfa = 1f;
+        public float beta = 5f;
+        public float p = .8f;
         public List<EdgeComponent> Pool { get; set; }
         public HashSet<Edge> Edges { get; set; }
+
+
+        public float Distance(Edge edge)
+        {
+            var a = Pool[edge.VertFrom].transform.position;
+            var b = Pool[edge.VertTo].transform.position;
+            return Vector3.Distance(a, b);
+        }
 
         private void Awake()
         {
@@ -51,17 +65,17 @@ namespace Assets.Scripts
 
             var vertices = Enumerable.Range(0, VerticesCount).ToArray();
             var center = PlaneSize / 2;
-              
+
             Pool = vertices
                 .Select(x =>
                 {
                     var (posX, posY) =
                         RandomExclude(-center + SafePad, center - SafePad, -SafePad, SafePad);
                     var item = Instantiate(EdgePrefab,
-                        new Vector3(posX, 0.2f, posY), Quaternion.identity, transform);  
-                    item.VertexId = x;
+                        new Vector3(posX, 0.2f, posY), Quaternion.identity, transform);
+                    item.SetPosition(x, (posX, posY));
                     return item;
-                }).ToList();
+                }).OrderBy(x => x.VertexId).ToList();
 
             var prm = Permutations(Pool, 2).Select(x => x.ToArray()).ToArray();
 
@@ -84,15 +98,7 @@ namespace Assets.Scripts
         {
             var center = PlaneSize / 2;
             return new Vector3(Random.Range(-center, center), 0, Random.Range(-center, center));
-        }
-
-        public EdgeComponent GetNextNode(IEnumerable<EdgeComponent> visited)
-        {
-            var remaining = Pool.Except(visited).ToList();
-            var node = remaining[Random.Range(0, remaining.Count)];
-            return node;
-        }
-
+        } 
 
         public static IEnumerable<IEnumerable<T>> Permutations<T>(IEnumerable<T> array, int elementsInArray)
         {
